@@ -5,20 +5,59 @@ import { Text , StyleSheet, View, Dimensions, TouchableOpacity, TextInput} from 
 export default class NuevaPartida extends Component{
     constructor(props){
         super(props)
+        this.state={
+            jugador1:'Jugador 1',
+            jugador2: 'Juegador 2'
+        }
     }
 
+    getDate(){
+        var today = new Date();
+        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        var dateTime = date+' '+time;
+        console.log(dateTime)
+       return dateTime
+    }
     IniciarJuego = () =>{
         console.log('---->IniciarJuego()')
-        this.props.navigation.navigate('Partida')
+        let fecha = this.getDate()
+        console.log('jugador1: ', this.state.jugador1)
+        console.log('jugador2: ', this.state.jugador2)
+        console.log('Fecha: ', fecha)
+        /*fetch('http://192.168.0.156:3000/RegisterCiudadano',{
+            method:'POST',
+            headers:{
+                Accept:'application/json',
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({
+                correo:this.state.correo,
+                clave:this.state.clave1
+            })
+        })
+        .then(response =>response.json())
+        .then(data => {
+            if(data['msj']){
+                console.log('id del ciudadano: [', data['idCiudadano'], ']')
+                this.props.navigation.navigate('InfoPersona',{screen:'InfoPersona',params: {idcuentaCiudadano: data['idCiudadano']}})
+            }
+        })
+        .catch(error =>{
+            console.log(error)
+        })*/
+        //this.props.navigation.navigate('Partida')
     }
     render(){
         return(
             <View style={Styles.container}>
                 <View style = {Styles.BotonContainer} >
                     <Text style={{fontSize:20, color:'white'}}>Jugador 1</Text>
-                    <TextInput style = {Styles.input} placeholder='. . . .' placeholderTextColor='#a8a8a8'></TextInput>
+                    <TextInput onChangeText={(text) => this.setState({jugador1:text})}
+                        style = {Styles.input} placeholder='. . . .' placeholderTextColor='#a8a8a8'></TextInput>
                     <Text style={{fontSize:20, color:'white', marginTop:10}}>Jugador 2</Text>
-                    <TextInput style = {Styles.input} placeholder='. . . .' placeholderTextColor='#a8a8a8'></TextInput>
+                    <TextInput onChangeText={(text) => this.setState({jugador2:text})}
+                         style = {Styles.input} placeholder='. . . .' placeholderTextColor='#a8a8a8'></TextInput>
                     <TouchableOpacity style={Styles.boton} onPress={()=>this.IniciarJuego()}>
                         <Text style={{fontSize:26, color:'white', fontFamily:'Roboto'}}>
                             Iniciar juego
