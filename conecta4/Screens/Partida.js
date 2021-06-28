@@ -7,10 +7,10 @@ export default class Partida extends Component{
         super(props)
         this.startDate = null
         this.endDate = null
-        this.idPartida=1
+        this.idPartida=this.props.route.params.idPartida
         this.state = {
-            jugador1:'Jean Hunt',
-            jugador2:'Sara Chacón',
+            jugador1:this.props.route.params.jugador1,
+            jugador2:this.props.route.params.jugador2,
             jugadorActual:1,
             movimientosJ1:0,
             movimientosJ2:0,
@@ -135,6 +135,8 @@ export default class Partida extends Component{
                 this.setState({ganador:this.state.jugador2},()=>this.terminarPartida(movimientosGanador)) 
             }
         }
+        else if(this.state.movimientosJ1 + this.state.movimientosJ2 >=42)
+        this.setState({ganador:null},()=>this.terminarPartida(null)) 
     }
 
     terminarPartida=(movimientosGanador)=>{
@@ -148,7 +150,7 @@ export default class Partida extends Component{
         this.props.navigation.navigate('Partida Finalizada',{idPartida: this.idPartida,
                                                             ganador:this.state.ganador,
                                                             duracion: (this.endDate - this.startDate)/1000,
-                                                            movTotal: movimientosTotales,
+                                                            movTotales: movimientosTotales,
                                                             movGanador: movimientosGanador})
     }
 

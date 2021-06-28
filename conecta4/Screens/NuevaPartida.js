@@ -25,28 +25,30 @@ export default class NuevaPartida extends Component{
         console.log('jugador1: ', this.state.jugador1)
         console.log('jugador2: ', this.state.jugador2)
         console.log('Fecha: ', fecha)
-        /*fetch('http://192.168.0.156:3000/RegisterCiudadano',{
+        fetch('http://192.168.0.156:3000/addPartida',{
             method:'POST',
             headers:{
                 Accept:'application/json',
                 'Content-Type':'application/json'
             },
             body:JSON.stringify({
-                correo:this.state.correo,
-                clave:this.state.clave1
+                jugador1:this.state.jugador1,
+                jugador2:this.state.jugador2,
+                fechaHora:fecha
             })
         })
         .then(response =>response.json())
         .then(data => {
             if(data['msj']){
-                console.log('id del ciudadano: [', data['idCiudadano'], ']')
-                this.props.navigation.navigate('InfoPersona',{screen:'InfoPersona',params: {idcuentaCiudadano: data['idCiudadano']}})
+                console.log('idPartida: [', data['idPartida'][0], ']')
+                this.props.navigation.navigate('Partida',{idPartida: data['idPartida'],
+                                                            jugador1:this.state.jugador1,
+                                                            jugador2:this.state.jugador2})
             }
         })
         .catch(error =>{
             console.log(error)
-        })*/
-        //this.props.navigation.navigate('Partida')
+        })
     }
     render(){
         return(

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text , StyleSheet, View, Dimensions, TouchableOpacity} from "react-native";
+import { Text , StyleSheet, View, Dimensions, TouchableOpacity, Image} from "react-native";
 
 
 export default class Inicio extends Component{
@@ -14,11 +14,14 @@ export default class Inicio extends Component{
 
     VerEstadisticas = () =>{
         console.log('--->VerEstadisticas()')
+        this.props.navigation.navigate('Estadísticas')
     }
     render(){
         return(
             <View style={Styles.container}>
-                <View style = {Styles.LogoContainer}></View>
+                <View style = {Styles.LogoContainer}>
+                    <Image source={require('../img/logo-CONECTA4.png')}></Image>
+                </View>
                 <View style = {Styles.BotonContainer} >
                     <TouchableOpacity style={Styles.boton} onPress={()=>this.NuevaPartida()}>
                         <Text style={{fontSize:26, color:'white', fontFamily:'Roboto'}}>
@@ -42,17 +45,19 @@ const Styles = StyleSheet.create({
         justifyContent:"center"
     },
     LogoContainer:{
-        marginTop:100,
+        marginTop:50,
         flex:3,
-        borderColor:'white',
-        borderWidth:0.3,
-        width:Dimensions.get('window').width-50
+        width:Dimensions.get('window').width-50,
+        justifyContent:"center",
+        alignItems:"center"
+    },
+    logo:{
+        fontSize:40,
+        color:'white'
     },
     BotonContainer:{
         marginVertical:30,
         flex:3,
-        borderColor:'white',
-        borderWidth:0.3,
         width:Dimensions.get('window').width-50
     },
     boton:{
