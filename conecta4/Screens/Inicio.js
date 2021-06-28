@@ -29,7 +29,7 @@ export default class Inicio extends Component{
                         </Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={Styles.boton} onPress={()=>this.VerEstadisticas()}>
-                        <Text style={{fontSize:26, color:'white', fontFamily:'Roboto'}}>Estadisticas</Text>
+                        <Text style={{fontSize:26, color:'white', fontFamily:'Roboto'}}>Estadísticas</Text>
                     </TouchableOpacity>
                 </View>
             </View>
